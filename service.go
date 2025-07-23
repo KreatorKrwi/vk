@@ -7,6 +7,13 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
+type IService interface {
+	Auth(req *AuthReq) (string, error)
+	Registration(req *AuthReq) (*User, error)
+	NewObj(obj *ObjReqWLogin) (*ObjExport, error)
+	GetItems(filters *AdsFilters, login string) ([]Ad, error)
+}
+
 type Service struct {
 	repo   *Repository
 	secret string
